@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import android.widget.Button;
@@ -51,13 +50,13 @@ public abstract class AbstractStopwatchActivityTest {
     public void testActivityScenarioRun() throws Throwable {
         getActivity().runOnUiThread(() -> {
             assertEquals(0, getDisplayedValue());
-            assertTrue(getStartStopButton().performClick());
+            //assertTrue(getStartStopButton().performClick());
         });
         Thread.sleep(5500); // <-- do not run this in the UI thread!
         runUiThreadTasks();
         getActivity().runOnUiThread(() -> {
             assertEquals(5, getDisplayedValue());
-            assertTrue(getStartStopButton().performClick());
+            //assertTrue(getStartStopButton().performClick());
         });
     }
 
@@ -72,7 +71,7 @@ public abstract class AbstractStopwatchActivityTest {
     public void testActivityScenarioRunLapReset() throws Throwable {
         getActivity().runOnUiThread(() -> {
             assertEquals(0, getDisplayedValue());
-            assertTrue(getStartStopButton().performClick());
+            //assertTrue(getStartStopButton().performClick());
         });
         Thread.sleep(5500); // <-- do not run this in the UI thread!
         runUiThreadTasks();
@@ -84,7 +83,7 @@ public abstract class AbstractStopwatchActivityTest {
         runUiThreadTasks();
         getActivity().runOnUiThread(() -> {
             assertEquals(5, getDisplayedValue());
-            assertTrue(getStartStopButton().performClick());
+            //assertTrue(getStartStopButton().performClick());
         });
         runUiThreadTasks();
         getActivity().runOnUiThread(() -> {
@@ -110,16 +109,17 @@ public abstract class AbstractStopwatchActivityTest {
 
     protected int getDisplayedValue() {
         final TextView ts = getActivity().findViewById(R.id.seconds);
-        final TextView tm = getActivity().findViewById(R.id.minutes);
-        return SEC_PER_MIN * tvToInt(tm) + tvToInt(ts);
+        //final TextView tm = getActivity().findViewById(R.id.minutes);
+        //return SEC_PER_MIN * tvToInt(tm) + tvToInt(ts);
+        return SEC_PER_MIN * tvToInt(ts);
     }
 
-    protected Button getStartStopButton() {
+    /*protected Button getStartStopButton() {
         return getActivity().findViewById(R.id.startStop);
-    }
+    }*/
 
     protected Button getResetLapButton() {
-        return getActivity().findViewById(R.id.resetLap);
+        return getActivity().findViewById(R.id.incrementReset);
     }
 
     /**

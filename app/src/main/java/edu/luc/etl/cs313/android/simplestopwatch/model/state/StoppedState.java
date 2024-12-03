@@ -11,13 +11,7 @@ class StoppedState implements StopwatchState {
     private final StopwatchSMStateView sm;
 
     @Override
-    public void onStartStop() {
-        sm.actionStart();
-        sm.toRunningState();
-    }
-
-    @Override
-    public void onLapReset() {
+    public void onIncrementReset() {
         sm.actionReset();
         sm.toStoppedState();
     }

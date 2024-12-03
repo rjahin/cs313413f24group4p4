@@ -48,11 +48,11 @@
         android:layout_centerHorizontal="true" >
 
         <Button
-            android:id="@+id/resetLap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onLapReset"
-            android:text="Increment/Reset" />
+                android:id="@+id/incrementReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onIncrementReset"
+                android:text="Increment/Reset"/>
     </RelativeLayout>
 
 </RelativeLayout>

@@ -11,8 +11,8 @@ interface StopwatchSMStateView {
     // transitions
     void toRunningState();
     void toStoppedState();
-    void toLapRunningState();
-    void toLapStoppedState();
+    //void toLapRunningState();
+   // void toLapStoppedState();
 
     // actions
     void actionInit();
