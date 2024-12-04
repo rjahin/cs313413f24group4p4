@@ -11,7 +11,7 @@ class RunningState implements StopwatchState {
     private final StopwatchSMStateView sm;
 
     public void onIncrementReset() {
-
+        sm.actionInit();
     }
 
     @Override

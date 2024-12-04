@@ -13,6 +13,12 @@ class StoppedState implements StopwatchState {
     @Override
     public void onIncrementReset() {
         sm.actionInc();
+
+        int time = sm.updateUIRuntime();
+        if (time == 15) {
+            sm.actionStart();
+            sm.toRunningState();
+        }
     }
 
     @Override
