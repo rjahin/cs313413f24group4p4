@@ -11,21 +11,18 @@ interface StopwatchSMStateView {
     // transitions
     void toRunningState();
     void toStoppedState();
-    //void toLapRunningState();
-   // void toLapStoppedState();
 
     // actions
     void actionInit();
     void actionReset();
     void actionStart();
     void actionStop();
-    void actionLap();
     void actionInc();
+    void actionDec();
     void actionUpdateView();
 
     // state-dependent UI updates
-    int updateUIRuntime();
-    void updateUILaptime();
+    void updateUIRuntime();
 
     // Provides access to the current runtime value for state classes via the state machine.
     int getRuntime();
