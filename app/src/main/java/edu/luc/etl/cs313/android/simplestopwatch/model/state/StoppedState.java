@@ -12,10 +12,33 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onIncrementReset() {
-        sm.actionInc();
+//        sm.actionInc();
+//
+//        int time = sm.updateUIRuntime();
+//        if (time == 15) {
+//            sm.actionStart();
+//            sm.toRunningState();
+//        }
 
-        int time = sm.updateUIRuntime();
-        if (time == 15) {
+//        if (sm.getRuntime() < 99) {
+//            sm.actionInc(); // Increment time by 1
+//        } else {
+//            sm.actionStart(); // Transition to running state
+//            sm.toRunningState();
+//        }
+
+        if (sm.getRuntime() < 99) {
+            sm.actionInc(); // Increment time by 1
+            sm.actionUpdateView(); // Update the UI to show the new time
+
+            // If time hits 15, start the timer and transition to Running state
+            if (sm.getRuntime() == 15) {
+                sm.toRunningState();// Transition to Running state
+                sm.actionStart(); // Start the timer
+
+            }
+        } else {
+            // If the time hits 99, transition to Running state
             sm.actionStart();
             sm.toRunningState();
         }

@@ -8,4 +8,5 @@ import edu.luc.etl.cs313.android.simplestopwatch.common.Stoppable;
  *
  * @author laufer
  */
-public interface ClockModel extends Startable, Stoppable, TickSource { }
+public interface ClockModel extends Startable, Stoppable, TickSource {
+}

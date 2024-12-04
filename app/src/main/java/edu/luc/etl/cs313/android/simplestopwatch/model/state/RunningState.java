@@ -11,7 +11,9 @@ class RunningState implements StopwatchState {
     private final StopwatchSMStateView sm;
 
     public void onIncrementReset() {
-        sm.actionInit();
+
+        sm.actionStop(); // Stop the timer
+        sm.toStoppedState(); // Transition to the Stopped state
     }
 
     @Override
