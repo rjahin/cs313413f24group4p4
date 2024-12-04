@@ -26,4 +26,7 @@ interface StopwatchSMStateView {
     // state-dependent UI updates
     void updateUIRuntime();
     void updateUILaptime();
+
+    // Provides access to the current runtime value for state classes via the state machine.
+    int getRuntime();
 }

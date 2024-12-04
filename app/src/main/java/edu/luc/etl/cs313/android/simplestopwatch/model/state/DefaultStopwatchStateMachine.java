@@ -25,6 +25,11 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
      */
     private StopwatchState state;
 
+    //new
+    public int getRuntime() {
+        return timeModel.getRuntime();
+    }
+
     protected void setState(final StopwatchState state) {
         this.state = state;
         listener.onStateUpdate(state.getId());
