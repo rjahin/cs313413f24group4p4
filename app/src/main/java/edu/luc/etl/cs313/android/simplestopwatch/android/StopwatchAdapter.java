@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.media.MediaPlayer;
 
 import java.util.Locale;
 
@@ -28,6 +29,10 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
      */
     private StopwatchModelFacade model;
 
+
+    private MediaPlayer beepPlayer;
+    private MediaPlayer alarmPlayer;
+
     protected void setModel(final StopwatchModelFacade model) {
         this.model = model;
     }
@@ -37,6 +42,9 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         super.onCreate(savedInstanceState);
         // inject dependency on view so this adapter receives UI events
         setContentView(R.layout.activity_main);
+        //Initialize sound effects, raw files in main/res/raw
+        beepPlayer = MediaPlayer.create(this, R.raw.beep);
+        alarmPlayer = MediaPlayer.create(this, R.raw.alarm);
         // inject dependency on model into this so model receives UI events
         this.setModel(new ConcreteStopwatchModelFacade());
         // inject dependency on this into model to register for UI updates
@@ -81,6 +89,9 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         runOnUiThread(() -> {
             final TextView stateName = findViewById(R.id.stateName);
             stateName.setText(getString(stateId));
+            if (getString(stateId).equals("AlarmSounding")){
+                alarmPlayer.start();
+            }
         });
     }
 
