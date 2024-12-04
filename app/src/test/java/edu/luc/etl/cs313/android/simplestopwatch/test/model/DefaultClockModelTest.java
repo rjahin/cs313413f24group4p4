@@ -9,7 +9,7 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.clock.DefaultClockModel;
  * Concrete testcase subclass for the default clock model implementation.
  *
  * @author laufer
- * @see http://xunitpatterns.com/Testcase%20Superclass.html
+ * @see <a href="http://xunitpatterns.com/Testcase%20Superclass.html">Testcase Superclass Pattern</a>
  */
 public class DefaultClockModelTest extends AbstractClockModelTest {
 

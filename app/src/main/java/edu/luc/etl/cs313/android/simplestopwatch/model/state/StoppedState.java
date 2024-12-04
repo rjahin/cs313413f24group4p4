@@ -19,7 +19,10 @@ class StoppedState implements StopwatchState {
                 sm.actionStart();
                 sm.toRunningState();
             }
-
+        } else if (sm.getRuntime() == 0) {
+            sm.actionStop(); // Stop any ongoing actions
+            sm.toAlarmSoundingState(); // Transition to AlarmSoundingState
+        }
 
         }
 
@@ -45,7 +48,7 @@ class StoppedState implements StopwatchState {
             sm.actionStart();
             sm.toRunningState();
         }*/
-    }
+
 
     @Override
     public void onTick() {

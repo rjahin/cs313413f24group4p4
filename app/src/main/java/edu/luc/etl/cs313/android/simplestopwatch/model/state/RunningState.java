@@ -18,8 +18,14 @@ class RunningState implements StopwatchState {
 
     @Override
     public void onTick() {
-        sm.actionDec(); //decrements timer
-        sm.toRunningState();
+        sm.actionInc(); // Increment the runtime
+        int time = sm.updateUIRuntime(); // Get the current runtime
+        if (time == 0) {
+            sm.actionStop();            // Stop the timer
+            sm.toAlarmSoundingState();  // Transition to the AlarmSoundingState
+        } else {
+            sm.toRunningState(); // Stay in the RunningState
+        }
     }
 
     @Override

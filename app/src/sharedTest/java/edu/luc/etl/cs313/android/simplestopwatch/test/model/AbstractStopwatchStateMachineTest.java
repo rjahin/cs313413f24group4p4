@@ -26,9 +26,9 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
  */
 public abstract class AbstractStopwatchStateMachineTest {
 
-    private StopwatchStateMachine model;
+    protected StopwatchStateMachine model;
 
-    private UnifiedMockDependency dependency;
+    protected UnifiedMockDependency dependency;
 
     @Before
     public void setUp() throws Exception {

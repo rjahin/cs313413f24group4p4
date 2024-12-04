@@ -35,6 +35,11 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
         listener.onStateUpdate(state.getId());
     }
 
+    @Override
+    public synchronized void onStartStop() {
+        state.onIncrementReset();
+    }
+
     private StopwatchModelListener listener;
 
     @Override
@@ -48,15 +53,21 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public synchronized void onIncrementReset()  { state.onIncrementReset(); }
     @Override public synchronized void onTick()      { state.onTick(); }
 
-    @Override public void updateUIRuntime() { listener.onTimeUpdate(timeModel.getRuntime()); }
+    public int updateUIRuntime() {
+        int time = timeModel.getRuntime(); // Fetch the current runtime
+        listener.onTimeUpdate(time);       // Notify the UI listener
+        return time;                       // Return the runtime value
+    }
 
     // known states
     private final StopwatchState STOPPED     = new StoppedState(this);
     private final StopwatchState RUNNING     = new RunningState(this);
+    private final StopwatchState ALARM_SOUNDING  = new AlarmSoundingState(this);
 
     // transitions
     @Override public void toRunningState()    { setState(RUNNING); }
     @Override public void toStoppedState()    { setState(STOPPED); }
+    @Override public void toAlarmSoundingState() { setState(ALARM_SOUNDING); }
 
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }

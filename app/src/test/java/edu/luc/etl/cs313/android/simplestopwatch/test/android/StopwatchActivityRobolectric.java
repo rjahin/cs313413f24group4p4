@@ -12,7 +12,7 @@ import org.robolectric.annotation.Config;
  * the Robolectric dependency needs to be isolated here instead of being present in src/main.
  *
  * @author laufer
- * @see http://pivotal.github.com/robolectric
+ * @see <a href="http://xunitpatterns.com/Testcase%20Superclass.html">Testcase Superclass Pattern</a>
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 23)
