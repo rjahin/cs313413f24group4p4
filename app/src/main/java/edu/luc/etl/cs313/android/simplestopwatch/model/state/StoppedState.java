@@ -17,6 +17,12 @@ class StoppedState implements StopwatchState {
         stoppedTime = 0;
         if (sm.getRuntime() < 99) {
             sm.actionInc();
+            sm.actionUpdateView();
+            if(sm.getRuntime() == 15){
+                sm.actionStart();
+                sm.toRunningState();
+                sm.actionBeep();
+            }
         }
 
     }
@@ -47,8 +53,8 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onTick() {
-        stoppedTime ++;
-        if (stoppedTime>=3){
+        stoppedTime++;
+        if (stoppedTime>3){
             sm.actionBeep();
             sm.actionStart();
             sm.toRunningState();
