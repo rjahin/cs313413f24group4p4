@@ -20,8 +20,6 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     private final ClockModel clockModel;
 
-    private boolean alarmSounding = false;
-
     /**
      * The internal state of this adapter component. Required for the State pattern.
      */
@@ -39,13 +37,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     @Override
     public synchronized void onStartStop() {
-        if (alarmSounding) {
-            alarmSounding = false;
-            actionStopAlarm();
-            toStoppedState();
-        } else {
-            state.onIncrementReset();
-        }
+        state.onIncrementReset();
     }
 
     private StopwatchModelListener listener;
@@ -82,13 +74,6 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
     @Override public void actionDec()        { timeModel.decRuntime(); actionUpdateView(); } //to decrement timer
     @Override public void actionUpdateView() { state.updateView(); }
-    public void actionStartAlarm() {
-        alarmSounding = true;
-        listener.onTimeUpdate(-1); // Signal the alarm
+    @Override public void actionAlarm()      {listener.onAlarm();}
+    @Override public void actionBeep()       {listener.onBeep();}
     }
-
-    @Override
-    public void actionStopAlarm() {
-        listener.onTimeUpdate(0); // Stop the alarm
-    }  //  alarm stop logic
-}

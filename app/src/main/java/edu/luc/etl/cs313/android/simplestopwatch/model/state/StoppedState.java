@@ -10,15 +10,13 @@ class StoppedState implements StopwatchState {
 
     private final StopwatchSMStateView sm;
 
+    private int stoppedTime = 0;
+
     @Override
     public void onIncrementReset() {
+        stoppedTime = 0;
         if (sm.getRuntime() < 99) {
             sm.actionInc();
-            int time = sm.getRuntime();
-            if (time == 15) {
-                sm.actionStart();
-                sm.toRunningState();
-            }
         }
 
     }
@@ -49,7 +47,12 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onTick() {
-        throw new UnsupportedOperationException("onTick");
+        stoppedTime ++;
+        if (stoppedTime>=3){
+            sm.actionBeep();
+            sm.actionStart();
+            sm.toRunningState();
+        }
     }
 
     @Override

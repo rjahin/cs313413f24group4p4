@@ -10,4 +10,6 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
 public interface StopwatchModelListener {
     void onTimeUpdate(int timeValue);
     void onStateUpdate(int stateId);
+    void onAlarm();
+    void onBeep();
 }

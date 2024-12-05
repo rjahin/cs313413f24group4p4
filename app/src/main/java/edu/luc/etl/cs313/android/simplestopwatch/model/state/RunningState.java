@@ -22,7 +22,7 @@ class RunningState implements StopwatchState {
         int time = sm.getRuntime();
         if (time == 0) {
             sm.actionStop();
-            sm.actionStartAlarm(); // Start the alarm when time reaches zero
+            sm.actionAlarm(); // Start the alarm when time reaches zero
         }
     }
 

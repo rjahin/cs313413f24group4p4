@@ -89,14 +89,18 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         runOnUiThread(() -> {
             final TextView stateName = findViewById(R.id.stateName);
             stateName.setText(getString(stateId));
-            if (getString(stateId).equals("AlarmSounding")){
-                alarmPlayer.start();
-            }
         });
     }
 
     // forward event listener methods to the model
     public void onIncrementReset(final View view)  {
         model.onIncrementReset();
+    }
+
+    public void onAlarm(){
+        alarmPlayer.start();
+    }
+    public void onBeep(){
+        beepPlayer.start();
     }
 }

@@ -20,8 +20,8 @@ interface StopwatchSMStateView {
     void actionInc();
     void actionDec();
     void actionUpdateView();
-    void actionStartAlarm(); // Start the alarm
-    void actionStopAlarm();  // Stop the alarm
+    void actionAlarm(); // Start the alarm
+    void actionBeep();  // Start the beep
 
 
     // state-dependent UI updates
