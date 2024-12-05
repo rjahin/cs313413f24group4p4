@@ -18,12 +18,11 @@ class RunningState implements StopwatchState {
 
     @Override
     public void onTick() {
-        sm.actionDec();
-        int time = sm.getRuntime();
-        if (time == 0) {
-            sm.actionStop();
-            //sm.toStoppedState();
+        if (sm.getRuntime() == 0) {
             sm.actionAlarm(); // Start the alarm when time reaches zero
+        }
+        else{
+            sm.actionDec();
         }
     }
 
