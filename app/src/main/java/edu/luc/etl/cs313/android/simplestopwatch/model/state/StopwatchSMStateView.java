@@ -2,7 +2,7 @@ package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
 /**
  * The restricted view states have of their surrounding state machine.
- * This is a client-specific interface in Peter Coad's terminology.
+ * This is a client-specific interface in Peter Code's terminology.
  *
  * @author laufer
  */
@@ -11,7 +11,6 @@ interface StopwatchSMStateView {
     // transitions
     void toRunningState();
     void toStoppedState();
-    void toAlarmSoundingState();
 
     // actions
     void actionInit();
@@ -21,6 +20,9 @@ interface StopwatchSMStateView {
     void actionInc();
     void actionDec();
     void actionUpdateView();
+    void actionStartAlarm(); // Start the alarm
+    void actionStopAlarm();  // Stop the alarm
+
 
     // state-dependent UI updates
     int updateUIRuntime();

@@ -20,6 +20,8 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     private final ClockModel clockModel;
 
+    private boolean alarmSounding = false;
+
     /**
      * The internal state of this adapter component. Required for the State pattern.
      */
@@ -37,7 +39,13 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     @Override
     public synchronized void onStartStop() {
-        state.onIncrementReset();
+        if (alarmSounding) {
+            alarmSounding = false;
+            actionStopAlarm();
+            toStoppedState();
+        } else {
+            state.onIncrementReset();
+        }
     }
 
     private StopwatchModelListener listener;
@@ -62,13 +70,10 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     // known states
     private final StopwatchState STOPPED     = new StoppedState(this);
     private final StopwatchState RUNNING     = new RunningState(this);
-    private final StopwatchState ALARM_SOUNDING  = new AlarmSoundingState(this);
 
     // transitions
     @Override public void toRunningState()    { setState(RUNNING); }
     @Override public void toStoppedState()    { setState(STOPPED); }
-    @Override public void toAlarmSoundingState() { setState(ALARM_SOUNDING); }
-
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }
     @Override public void actionReset()      { timeModel.resetRuntime(); actionUpdateView(); }
@@ -77,4 +82,13 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
     @Override public void actionDec()        { timeModel.decRuntime(); actionUpdateView(); } //to decrement timer
     @Override public void actionUpdateView() { state.updateView(); }
+    public void actionStartAlarm() {
+        alarmSounding = true;
+        listener.onTimeUpdate(-1); // Signal the alarm
+    }
+
+    @Override
+    public void actionStopAlarm() {
+        listener.onTimeUpdate(0); // Stop the alarm
+    }  //  alarm stop logic
 }

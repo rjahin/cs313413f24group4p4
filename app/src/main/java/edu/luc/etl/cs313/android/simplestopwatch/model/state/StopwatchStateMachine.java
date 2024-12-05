@@ -14,3 +14,4 @@ public interface StopwatchStateMachine extends StopwatchUIListener, TickListener
     void onStartStop();
 
 }
+

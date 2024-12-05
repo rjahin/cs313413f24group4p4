@@ -11,22 +11,21 @@ class RunningState implements StopwatchState {
     private final StopwatchSMStateView sm;
 
     public void onIncrementReset() {
-        sm.actionStop(); //stops timer (prevents crash when timer reset)
-        sm.actionInit(); //resets timer and goes to stopped state
-
+        sm.actionStop();
+        sm.actionReset();
+        sm.toStoppedState();
     }
 
     @Override
     public void onTick() {
-        sm.actionInc(); // Increment the runtime
-        int time = sm.updateUIRuntime(); // Get the current runtime
+        sm.actionDec();
+        int time = sm.getRuntime();
         if (time == 0) {
-            sm.actionStop();            // Stop the timer
-            sm.toAlarmSoundingState();  // Transition to the AlarmSoundingState
-        } else {
-            sm.toRunningState(); // Stay in the RunningState
+            sm.actionStop();
+            sm.actionStartAlarm(); // Start the alarm when time reaches zero
         }
     }
+
 
     @Override
     public void updateView() {
