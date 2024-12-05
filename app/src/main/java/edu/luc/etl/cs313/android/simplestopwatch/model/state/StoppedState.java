@@ -14,15 +14,13 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onIncrementReset() {
+        if (sm.getRuntime()==0){
+            sm.actionStart();
+        }
         stoppedTime = 0;
         if (sm.getRuntime() < 99) {
             sm.actionInc();
             sm.actionUpdateView();
-            if(sm.getRuntime() == 15){
-                sm.actionStart();
-                sm.toRunningState();
-                sm.actionBeep();
-            }
         }
 
     }
@@ -56,7 +54,6 @@ class StoppedState implements StopwatchState {
         stoppedTime++;
         if (stoppedTime>3){
             sm.actionBeep();
-            sm.actionStart();
             sm.toRunningState();
         }
     }
