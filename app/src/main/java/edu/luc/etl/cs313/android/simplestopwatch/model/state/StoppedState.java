@@ -52,7 +52,7 @@ class StoppedState implements StopwatchState {
     @Override
     public void onTick() {
         stoppedTime++;
-        if (stoppedTime>3){
+        if (stoppedTime > 3 || sm.getRuntime()== 99){
             sm.actionBeep();
             sm.toRunningState();
         }
