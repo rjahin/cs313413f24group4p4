@@ -10,5 +10,5 @@ public interface TimeModel {
     void resetRuntime();
     void incRuntime();
     void decRuntime(); //added to decrement runtime
-    int getRuntime();
+    int getRuntime(); // Retrieves the current runtime of the stopwatch
 }

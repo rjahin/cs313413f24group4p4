@@ -6,5 +6,9 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
  * @author laufer
  */
 public interface Startable {
+
+    /**
+     * Starts the component's operation.
+     */
     void start();
 }

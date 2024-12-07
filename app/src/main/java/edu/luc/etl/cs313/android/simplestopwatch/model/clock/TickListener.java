@@ -6,5 +6,8 @@ package edu.luc.etl.cs313.android.simplestopwatch.model.clock;
  * @author laufer
  */
 public interface TickListener {
+    /**
+     * Called when a tick event is triggered by the clock.
+     */
     void onTick();
 }

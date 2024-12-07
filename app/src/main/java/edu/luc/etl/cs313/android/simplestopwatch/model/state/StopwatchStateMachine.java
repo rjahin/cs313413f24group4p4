@@ -11,7 +11,11 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.clock.TickListener;
  * @author laufer
  */
 public interface StopwatchStateMachine extends StopwatchUIListener, TickListener, StopwatchModelSource, StopwatchSMStateView {
-    void onStartStop();
+    /**
+     * Called when the start/stop button is pressed.
+     * Triggers the corresponding action in the current state.
+     */
 
+    void onStartStop();
 }
 

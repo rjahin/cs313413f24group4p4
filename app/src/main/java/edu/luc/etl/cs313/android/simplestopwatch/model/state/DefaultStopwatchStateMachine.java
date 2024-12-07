@@ -6,18 +6,30 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
 
 /**
  * An implementation of the state machine for the stopwatch.
- *
+ * This class manages transitions between states and triggers actions.
  * @author laufer
  */
 public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
+    /**
+     * Initializes the stopwatch state machine with the provided models.
+     *
+     * @param timeModel the time model managing the stopwatch time
+     * @param clockModel the clock model generating periodic tick events
+     */
     public DefaultStopwatchStateMachine(final TimeModel timeModel, final ClockModel clockModel) {
         this.timeModel = timeModel;
         this.clockModel = clockModel;
     }
 
+    /**
+     * The internal time model holding the current runtime.
+     */
     private final TimeModel timeModel;
 
+    /**
+     * The internal clock model responsible for triggering ticks.
+     */
     private final ClockModel clockModel;
 
     /**
@@ -64,16 +76,16 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     private final StopwatchState RUNNING     = new RunningState(this);
 
     // transitions
-    @Override public void toRunningState()    { setState(RUNNING); }
-    @Override public void toStoppedState()    { setState(STOPPED); }
+    @Override public void toRunningState()    { setState(RUNNING); } // Move to Stopped
+    @Override public void toStoppedState()    { setState(STOPPED); } // Move to Running
     // actions
-    @Override public void actionInit()       { toStoppedState(); actionReset(); }
-    @Override public void actionReset()      { timeModel.resetRuntime(); actionUpdateView(); }
-    @Override public void actionStart()      {  clockModel.start(); }
-    @Override public void actionStop()       { clockModel.stop(); }
-    @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
+    @Override public void actionInit()       { toStoppedState(); actionReset(); } // Initialize to stopped state and Reset the stopwatch
+    @Override public void actionReset()      { timeModel.resetRuntime(); actionUpdateView(); } // Reset time and Update UI
+    @Override public void actionStart()      {  clockModel.start(); } // Start the clock
+    @Override public void actionStop()       { clockModel.stop(); } // Stop the clock
+    @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); } // Increment time and Update UI
     @Override public void actionDec()        { timeModel.decRuntime(); actionUpdateView(); } //to decrement timer
-    @Override public void actionUpdateView() { state.updateView(); }
-    @Override public void actionAlarm()      {listener.onAlarm();}
-    @Override public void actionBeep()       {listener.onBeep();}
+    @Override public void actionUpdateView() { state.updateView(); } // Refresh UI based on state
+    @Override public void actionAlarm()      {listener.onAlarm();} // Trigger alarm sound
+    @Override public void actionBeep()       {listener.onBeep();} // Trigger beep sound
     }

@@ -6,5 +6,10 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
  * @author laufer
  */
 public interface StopwatchUIListener {
+
+    /**
+     * Called when the user triggers the increment or reset action from the UI.
+     * Typically triggered by a button press event
+     */
     void onIncrementReset();
 }

@@ -7,14 +7,22 @@ import static edu.luc.etl.cs313.android.simplestopwatch.common.Constants.*;
  */
 public class DefaultTimeModel implements TimeModel {
 
+    /**
+     * The current runtime value of the stopwatch in seconds.
+     */
     private int runningTime = 0;
 
-
+    /**
+     * Resets the runtime value to zero.
+     */
     @Override
     public void resetRuntime() {
         runningTime = 0;
     }
 
+    /**
+     * Increments the runtime value by one second.
+     */
     @Override
     public void incRuntime() {
         if (runningTime < 99) {
@@ -22,6 +30,9 @@ public class DefaultTimeModel implements TimeModel {
         }
     }
 
+    /**
+     * Decrements the runtime value by one second.
+     */
     @Override
     public void decRuntime() {
         if (runningTime > 0) {
@@ -29,6 +40,11 @@ public class DefaultTimeModel implements TimeModel {
         }
     }
 
+    /**
+     * Retrieves the current runtime value of the stopwatch.
+     *
+     * @return the current runtime in seconds
+     */
     @Override
     public int getRuntime() {
         return runningTime;

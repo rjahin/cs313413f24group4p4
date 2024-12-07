@@ -9,6 +9,16 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.clock.TickListener;
  * @author laufer
  */
 interface StopwatchState extends StopwatchUIListener, TickListener {
+
+    /**
+     * Updates the UI to reflect the current state.
+     */
     void updateView();
+
+    /**
+     * Retrieves the unique ID representing this state.
+     *
+     * @return the state ID as a resource integer
+     */
     int getId();
 }

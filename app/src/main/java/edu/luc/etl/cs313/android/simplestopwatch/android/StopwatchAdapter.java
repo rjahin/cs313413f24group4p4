@@ -29,14 +29,27 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
      */
     private StopwatchModelFacade model;
 
-
+    /**
+     * Media player for playing a beep and alarm sounds, respectively.
+     */
     private MediaPlayer beepPlayer;
     private MediaPlayer alarmPlayer;
 
+    /**
+     * Injects the stopwatch model facade into this adapter.
+     *
+     * @param model the initialized model facade to use
+     */
     protected void setModel(final StopwatchModelFacade model) {
         this.model = model;
     }
 
+    /**
+     * Called when the activity is created.
+     * Initializes the UI, model, and sound effects.
+     *
+     * @param savedInstanceState the saved activity state
+     */
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +70,9 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         return true;
     }
 
+    /**
+     * Starts the stopwatch model.
+     */
     @Override
     protected void onStart() {
         super.onStart();
