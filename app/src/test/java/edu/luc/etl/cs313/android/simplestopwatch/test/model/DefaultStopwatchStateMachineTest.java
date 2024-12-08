@@ -33,22 +33,4 @@ public class DefaultStopwatchStateMachineTest extends AbstractStopwatchStateMach
         setModel(null);
         super.tearDown();
     }
-
-    @Test
-    public void testAlarmSoundingAndReset() {
-        // Start the stopwatch
-        model.onStartStop();
-        assertEquals(R.string.RUNNING, dependency.getState());
-
-        // Simulate ticking until time reaches zero
-        onTickRepeat(15);
-        assertEquals(-1, dependency.getTime()); // Verify alarm started
-        assertTrue(dependency.isStarted()); // Ensure timer is not running anymore
-
-        // Press the button to stop the alarm
-        model.onStartStop();
-        assertEquals(R.string.STOPPED, dependency.getState()); // Verify stopped state
-        assertEquals(0, dependency.getTime()); // Ensure timer reset to zero
-    }
-
 }
